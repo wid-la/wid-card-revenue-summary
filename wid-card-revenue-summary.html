@@ -1,0 +1,146 @@
+<html><head><link rel="import" href="../polymer/polymer.html">
+
+<link rel="import" href="../iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../paper-progress/paper-progress.html">
+<link rel="import" href="../paper-styles/paper-styles-classes.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+
+<link rel="import" href="../wid-card-standard-behavior/wid-card-standard-behavior.html">
+<link rel="import" href="../wid-card-weight-behavior/wid-card-weight-behavior.html">
+<link rel="import" href="../wid-versatile-websocket/wid-versatile-websocket.html">
+<link rel="import" href="../wid-card-subscriptions-behavior/wid-card-subscriptions-behavior.html">
+
+<!--
+An element providing a solution to no problem in particular.
+
+Example:
+
+    <wid-card-trailer-availability></wid-card-trailer-availability>
+
+@group Seed Elements
+@element wid-card-trailer-availability
+@demo demo/index.html
+@hero hero.svg
+-->
+</head><body><dom-module id="wid-card-revenue-summary">
+
+  <template>
+    <style>
+
+      :host {
+        display: block;
+        box-sizing: border-box;
+        height: 100%;
+      }
+
+      paper-material {
+        overflow-y: auto;
+        height: 100%;
+        font-family: roboto-light;
+        color:#494949;
+        font-size: 2.5vw;
+      }
+
+      #header-container{
+        color:white;
+        font-size: 2vw;
+      }
+
+      #goal-container{
+        background: white;
+        background-image : url('/images/cards/goal.svg');
+        background-repeat:no-repeat; 
+        background-position: 3px 3px;
+        background-size: 10%;
+      }
+
+      #to-date-container{
+        background: #EAEAEA;
+        background-image : url('/images/cards/toDate.svg');
+        background-repeat:no-repeat; 
+        background-position: 3px 3px;
+        background-size: 10%;
+
+      }
+
+      #margin-container{
+        background: white;
+        background-image : url('/images/cards/margin.svg');
+        background-repeat:no-repeat; 
+        background-position: 3px 3px;
+        background-size: 10%;
+      }
+
+      #percentage-container{
+        background: white;
+      }
+
+      #percentage{
+        margin-top:20px;
+        font-size: 3vw;
+        font-family: roboto;
+      }
+
+      .custom-progess {
+         width: 100%;
+         height: 20px;
+         left: 0px;
+         --paper-progress-height: 100%;
+         position: absolute;
+      }
+
+      .scale-icon{
+        --iron-icon-height: 60%;
+        --iron-icon-width: 60%;
+      }
+
+
+
+    </style>
+    <div id="websockets">
+
+      <!-- This is a requirement of `wid-card-subscriptions-behavior` -->
+      <!-- one websocket element for each subscribed channel -->
+      <template is="dom-repeat" items="[[websockets]]" as="ws">
+        <wid-versatile-websocket url="[[ws.url]]" token="[[ws.token]]" subscription="[[ws.subscription]]" on-data="_onData">
+        </wid-versatile-websocket>
+      </template>
+
+    </div>
+
+
+    <paper-material class="layout vertical flex" elevation="3">
+      <div id="header-container" style$="[[_getBackgroundColor(bgcolor)]]" class="layout horizontal flex center-center">
+        <div class="flex layout vertical center-center">
+          <iron-icon class="scale-icon flex" src="[[_getIconImage(icon)]]"></iron-icon>
+        </div>
+        <div class="flex layout vertical center-center">
+          <span>[[name]]</span>
+        </div>
+      </div>
+
+      <div id="goal-container" class="layout horizontal flex center-center">
+        <span>[[_getGoal(goal)]]</span>
+      </div>
+
+      <div id="to-date-container" class="layout horizontal flex center-center">
+        <span>[[_getToDate(to_date)]]</span>
+      </div>
+
+      <div id="margin-container" class="layout horizontal flex center-center">
+        <span>[[_getMargin(margin)]]</span>
+      </div>
+
+      <div id="percentage-container" class="layout horizontal flex center-center">
+        <paper-progress id="paperProgress" class="custom-progess transiting flex" value="[[_getPercentage(goal,to_date)]]"></paper-progress><br>
+        <span id="percentage" style$="[[_getColor(bgcolor)]]">[[_getPercentageWithSign(goal,to_date)]]</span>
+      </div>
+
+    </paper-material>
+
+  </template>
+
+</dom-module>
+
+<script src="wid-card-revenue-summary.js"></script></body></html>
