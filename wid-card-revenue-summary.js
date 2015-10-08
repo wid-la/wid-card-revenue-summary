@@ -13,8 +13,7 @@
        * @type {String}
        */
       name: {
-        type: String,
-        value: 'Team 1'
+        type: String
       },
 
       /**
@@ -22,8 +21,7 @@
        * @type {String}
        */
       icon: {
-        type: String,
-        value: 'chicken.svg'
+        type: String
       },
 
       /**
@@ -32,8 +30,7 @@
        */
       bgcolor: {
         type: String,
-        observer: '_onColorChanged',
-        value: 'orange'
+        observer: '_onColorChanged'
       },
 
       /**
@@ -41,17 +38,15 @@
        * @type {String}
        */
       goal: {
-        type: String,
-        value: '17728'
+        type: String
       },
 
       /**
-       * to_date
+       * toDate
        * @type {String}
        */
       toDate: {
-        type: String,
-        value: '12552'
+        type: String
       },
 
       /**
@@ -59,8 +54,7 @@
       * @type {String}
       */
       margin: {
-        type: String,
-        value: '1255362'
+        type: String
       }
 
     },

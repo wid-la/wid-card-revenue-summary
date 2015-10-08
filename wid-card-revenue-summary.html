@@ -125,7 +125,7 @@ Example:
       </div>
 
       <div id="to-date-container" class="layout horizontal flex center-center">
-        <span>[[_getToDate(to_date)]]</span>
+        <span>[[_getToDate(toDate)]]</span>
       </div>
 
       <div id="margin-container" class="layout horizontal flex center-center">
@@ -133,8 +133,8 @@ Example:
       </div>
 
       <div id="percentage-container" class="layout horizontal flex center-center">
-        <paper-progress id="paperProgress" class="custom-progess transiting flex" value="[[_getPercentage(goal,to_date)]]"></paper-progress><br>
-        <span id="percentage" style$="[[_getColor(bgcolor)]]">[[_getPercentageWithSign(goal,to_date)]]</span>
+        <paper-progress id="paperProgress" class="custom-progess transiting flex" value="[[_getPercentage(goal,toDate)]]"></paper-progress><br>
+        <span id="percentage" style$="[[_getColor(bgcolor)]]">[[_getPercentageWithSign(goal,toDate)]]</span>
       </div>
 
     </paper-material>
